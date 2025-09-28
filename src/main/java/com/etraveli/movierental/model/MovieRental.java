@@ -1,4 +1,4 @@
-package com.etraveli.movierental;
+package com.etraveli.movierental.model;
 
 public class MovieRental {
     private String movieId;

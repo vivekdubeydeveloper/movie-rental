@@ -1,4 +1,4 @@
-package com.etraveli.movierental;
+package com.etraveli.movierental.model;
 
 import java.util.List;
 
