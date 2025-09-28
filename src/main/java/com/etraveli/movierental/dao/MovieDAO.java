@@ -20,10 +20,6 @@ public class MovieDAO {
        return movies.get(id);
     }
 
-    public List<Movie> findAllById(List<String> ids){
-        return ids.stream().map(movies::get).toList();
-    }
-
     public List<String> findAllMissingId(List<String> ids){
         return ids.stream().filter(Predicate.not(movies::containsKey)).toList();
     }
