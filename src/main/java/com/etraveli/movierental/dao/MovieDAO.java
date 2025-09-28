@@ -3,6 +3,8 @@ package com.etraveli.movierental.dao;
 import com.etraveli.movierental.model.Movie;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class MovieDAO {
     private static HashMap<String, Movie> movies = new HashMap();
@@ -15,6 +17,14 @@ public class MovieDAO {
 
     public Movie findById(String id){
        return movies.get(id);
+    }
+
+    public List<Movie> findAllById(List<String> ids){
+        return ids.stream().map(movies::get).toList();
+    }
+
+    public List<String> findAllMissingId(List<String> ids){
+        return ids.stream().filter(Predicate.not(movies::containsKey)).toList();
     }
 
 }
