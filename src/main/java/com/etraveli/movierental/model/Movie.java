@@ -2,19 +2,19 @@ package com.etraveli.movierental.model;
 
 public class Movie {
     private String title;
-    private String code;
+    private MovieType movieType;
 
-    public Movie(String title, String code) {
+    public Movie(String title,  MovieType movieType) {
 
         this.title = title;
-        this.code = code;
+        this.movieType = movieType;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getCode() {
-        return code;
+    public MovieType getMovieType() {
+        return movieType;
     }
 }

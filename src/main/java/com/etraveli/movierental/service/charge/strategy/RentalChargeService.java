@@ -1,6 +1,6 @@
-package com.etraveli.movierental.service;
+package com.etraveli.movierental.service.charge.strategy;
 
-public interface RentalPriceService {
+public interface RentalChargeService {
     double calculateCharge(int daysRented);
     int calculateFrequentEnterPoints(int daysRented);
 }

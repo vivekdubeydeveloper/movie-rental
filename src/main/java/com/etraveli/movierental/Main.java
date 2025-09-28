@@ -2,8 +2,7 @@ package com.etraveli.movierental;
 
 import com.etraveli.movierental.model.Customer;
 import com.etraveli.movierental.model.MovieRental;
-import com.etraveli.movierental.service.RentalStatementProxyServiceImpl;
-import com.etraveli.movierental.service.RentalStatementServiceImpl;
+import com.etraveli.movierental.service.statement.RentalStatementProxyServiceImpl;
 
 import java.util.Arrays;
 
