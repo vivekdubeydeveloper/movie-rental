@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class MovieDAO implements DAO {
-    private static final HashMap<String, Movie> movies = new HashMap();
+    private static final HashMap<String, Movie> movies = new HashMap<>();
     static{
         movies.put("F001", new Movie("You've Got Mail", MovieType.REGULAR));
         movies.put("F002", new Movie("Matrix",  MovieType.REGULAR));

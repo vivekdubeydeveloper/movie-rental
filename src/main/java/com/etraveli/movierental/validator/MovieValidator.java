@@ -8,10 +8,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class MovieValidator implements Validator<List<MovieRental>> {
-    private final DAO movieDAO;
-    public MovieValidator(DAO movieDAO) {
-        this.movieDAO = movieDAO;
-    }
     @Override
     public void validate(List<MovieRental> movieRentals) {
         movieRentalIsNullOrEmpty(movieRentals);

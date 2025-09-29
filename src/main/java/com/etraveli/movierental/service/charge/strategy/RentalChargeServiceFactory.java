@@ -11,17 +11,12 @@ public class RentalChargeServiceFactory {
     public static RentalChargeService getRentalChargeService(MovieType movieType) {
         //TODO: validate Movie type null in validation layer
         return rentalChargeServiceCache.computeIfAbsent(movieType, movieTypeKey -> {
-            switch (movieTypeKey) {
-                case NEW:
-                    return new NewMovieChargeService();
-                case REGULAR:
-                    return new RegularMovieChargeService();
-                case CHILDRENS:
-                    return new ChildrenMovieChargeService();
-                default:
-                    throw new IllegalArgumentException("Unknown Movie Type: " + movieTypeKey);
-
-            }
+            return switch (movieTypeKey) {
+                case NEW -> new NewMovieChargeService();
+                case REGULAR -> new RegularMovieChargeService();
+                case CHILDRENS -> new ChildrenMovieChargeService();
+                default -> throw new IllegalArgumentException("Unknown Movie Type: " + movieTypeKey);
+            };
         });
 
 
