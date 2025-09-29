@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class MovieDAO {
-    private static HashMap<String, Movie> movies = new HashMap();
+public class MovieDAO implements DAO {
+    private static final HashMap<String, Movie> movies = new HashMap();
     static{
         movies.put("F001", new Movie("You've Got Mail", MovieType.REGULAR));
         movies.put("F002", new Movie("Matrix",  MovieType.REGULAR));
@@ -16,10 +16,12 @@ public class MovieDAO {
         movies.put("F004", new Movie("Fast & Furious X", MovieType.NEW));
     }
 
+    @Override
     public Movie findById(String id){
        return movies.get(id);
     }
 
+    @Override
     public List<String> findAllMissingId(List<String> ids){
         return ids.stream().filter(Predicate.not(movies::containsKey)).toList();
     }

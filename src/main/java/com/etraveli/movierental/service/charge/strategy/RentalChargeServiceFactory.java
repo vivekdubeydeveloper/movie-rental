@@ -6,7 +6,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class RentalChargeServiceFactory {
-    static Map<MovieType, RentalChargeService> rentalChargeServiceCache = new EnumMap<>(MovieType.class);
+    private final static Map<MovieType, RentalChargeService> rentalChargeServiceCache = new EnumMap<>(MovieType.class);
 
     public static RentalChargeService getRentalChargeService(MovieType movieType) {
         //TODO: validate Movie type null in validation layer

@@ -10,14 +10,14 @@ import com.etraveli.movierental.validator.Validator;
 import java.util.List;
 
 public class RentalStatementProxyServiceImpl implements RentalStatementService {
-    RentalStatementService rentalStatementService;
-    Validator<List<MovieRental>> movieValidator;
-    Validator<Customer> customerValidator;
+    private final RentalStatementService rentalStatementService;
+    private final Validator<List<MovieRental>> movieValidator;
+    private final Validator<Customer> customerValidator;
 
     public RentalStatementProxyServiceImpl() {
         this.customerValidator = new CustomerValidator();
         this.movieValidator = new MovieValidator(new MovieDAO());
-        rentalStatementService = new RentalStatementServiceImpl();
+        this.rentalStatementService = new RentalStatementServiceImpl();
     }
 
     @Override
@@ -26,11 +26,11 @@ public class RentalStatementProxyServiceImpl implements RentalStatementService {
         return rentalStatementService.statement(customer);
     }
 
-    public void validateInput(Customer customer) {
+    private void validateInput(Customer customer) {
         //TODO:need to handle this properly
         customerValidator.validate(customer);
         //TODO:Need to think if validate a single record or multiple records
         //Here multiple record validation seems efficient
-        movieValidator.validate(customer.getRentals());
+        movieValidator.validate(customer.rentals());
     }
 }
