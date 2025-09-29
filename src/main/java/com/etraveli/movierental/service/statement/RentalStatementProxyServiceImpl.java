@@ -1,6 +1,5 @@
 package com.etraveli.movierental.service.statement;
 
-import com.etraveli.movierental.dao.MovieDAO;
 import com.etraveli.movierental.model.Customer;
 import com.etraveli.movierental.model.MovieRental;
 import com.etraveli.movierental.validator.CustomerValidator;
