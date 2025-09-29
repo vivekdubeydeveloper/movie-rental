@@ -1,6 +1,5 @@
 package com.etraveli.movierental.validator;
 
-import com.etraveli.movierental.dao.DAO;
 import com.etraveli.movierental.exception.InvalidInputException;
 import com.etraveli.movierental.model.MovieRental;
 

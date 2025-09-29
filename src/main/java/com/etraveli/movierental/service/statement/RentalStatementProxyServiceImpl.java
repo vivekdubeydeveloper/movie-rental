@@ -16,7 +16,7 @@ public class RentalStatementProxyServiceImpl implements RentalStatementService {
 
     public RentalStatementProxyServiceImpl() {
         this.customerValidator = new CustomerValidator();
-        this.movieValidator = new MovieValidator(new MovieDAO());
+        this.movieValidator = new MovieValidator();
         this.rentalStatementService = new RentalStatementServiceImpl();
     }
 
