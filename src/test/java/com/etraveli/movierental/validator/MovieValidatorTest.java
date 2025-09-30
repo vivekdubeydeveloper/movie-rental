@@ -1,7 +1,6 @@
 package com.etraveli.movierental.validator;
 
 import com.etraveli.movierental.exception.InvalidInputException;
-import com.etraveli.movierental.model.Customer;
 import com.etraveli.movierental.model.MovieRental;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

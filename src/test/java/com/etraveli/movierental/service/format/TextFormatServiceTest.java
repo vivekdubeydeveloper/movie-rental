@@ -1,11 +1,9 @@
 package com.etraveli.movierental.service.format;
 
-import com.etraveli.movierental.model.MovieRental;
 import com.etraveli.movierental.model.RentalStatement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;

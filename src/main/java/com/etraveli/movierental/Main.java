@@ -4,7 +4,6 @@ import com.etraveli.movierental.model.Customer;
 import com.etraveli.movierental.model.MovieRental;
 import com.etraveli.movierental.service.statement.RentalStatementProxyServiceImpl;
 
-import javax.annotation.processing.Generated;
 import java.util.Arrays;
 
 public class Main {
