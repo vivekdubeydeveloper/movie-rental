@@ -14,7 +14,6 @@ public class RentalChargeServiceFactory {
             case NEW -> new NewMovieChargeService();
             case REGULAR -> new RegularMovieChargeService();
             case CHILDRENS -> new ChildrenMovieChargeService();
-            default -> throw new IllegalArgumentException("Unknown Movie Type: " + movieTypeKey);
         });
 
 

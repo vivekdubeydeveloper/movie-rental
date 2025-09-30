@@ -7,7 +7,7 @@ public class ChildrenMovieChargeService implements RentalChargeService {
         if (daysRented > 3) {
             thisAmount = ((daysRented - 3) * 1.5) + thisAmount;
         }
-        return daysRented;
+        return thisAmount;
     }
 
     @Override
