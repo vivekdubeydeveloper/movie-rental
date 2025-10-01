@@ -18,6 +18,7 @@ private DAO movieDAO;
     void findByIdWhenGivenValidIdThenGetExpectedResponse() {
         Movie movie = movieDAO.findById("F001");
         assertEquals("You've Got Mail",movie.title());
+        assertEquals(MovieType.REGULAR,movie.movieType());
     }
 
     @Test
