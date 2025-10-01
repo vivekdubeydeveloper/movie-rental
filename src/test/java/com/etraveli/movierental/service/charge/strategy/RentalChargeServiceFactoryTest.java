@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RentalChargeServiceFactoryTest {
 
     @Test
-    void getRentalChargeService() {
+    void getRentalChargeServiceWhenGivingCorrectMovieTypeThenGetExpectedRentalChargeService() {
         assertInstanceOf(ChildrenMovieChargeService.class, RentalChargeServiceFactory.getRentalChargeService(MovieType.CHILDRENS));
         assertInstanceOf(RegularMovieChargeService.class, RentalChargeServiceFactory.getRentalChargeService(MovieType.REGULAR));
         assertInstanceOf(NewMovieChargeService.class, RentalChargeServiceFactory.getRentalChargeService(MovieType.NEW));

@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MovieValidatorTest {
-    Validator<List<MovieRental>>  movieValidator;
+    private Validator<List<MovieRental>>  movieValidator;
     @BeforeEach
     void setUp() {
         movieValidator=new MovieValidator();

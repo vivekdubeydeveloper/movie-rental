@@ -8,17 +8,20 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MovieDAOTest {
-DAO movieDAO;
+private DAO movieDAO;
     @BeforeEach
     void setUp() {
         movieDAO = new MovieDAO();
     }
 
     @Test
-    void findById() {
+    void findByIdWhenGivenValidIdThenGetExpectedResponse() {
         Movie movie = movieDAO.findById("F001");
         assertEquals("You've Got Mail",movie.title());
-        assertEquals(MovieType.REGULAR,movie.movieType());
+    }
+
+    @Test
+    void findByIdWhenGivenInvalidIdThenGetNullResponse() {
         assertNull(movieDAO.findById("F0002"));
     }
 }

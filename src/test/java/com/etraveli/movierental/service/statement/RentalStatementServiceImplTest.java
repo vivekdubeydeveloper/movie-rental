@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RentalStatementServiceImplTest {
-RentalStatementService rentalStatementService;
+private RentalStatementService rentalStatementService;
     @BeforeEach
     void setUp() {
         rentalStatementService=new RentalStatementServiceImpl();

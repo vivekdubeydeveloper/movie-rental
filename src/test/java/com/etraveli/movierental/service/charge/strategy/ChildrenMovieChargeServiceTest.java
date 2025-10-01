@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ChildrenMovieChargeServiceTest {
-    RentalChargeService ChildrenMovieChargeService;
+    private RentalChargeService ChildrenMovieChargeService;
 
     @BeforeEach
     void setUp() {
