@@ -2,21 +2,25 @@ package com.etraveli.movierental.service.statement;
 
 import com.etraveli.movierental.model.Customer;
 import com.etraveli.movierental.model.MovieRental;
-import com.etraveli.movierental.validator.CustomerValidator;
-import com.etraveli.movierental.validator.MovieValidator;
 import com.etraveli.movierental.validator.Validator;
 
 import java.util.List;
 
+/**
+ * This class is proxy for actual business logic class
+ * Here we are doing data validation before calling actual method
+ *
+ * @author vivek
+ */
 public class RentalStatementProxyServiceImpl implements RentalStatementService {
     private final RentalStatementService rentalStatementService;
     private final Validator<List<MovieRental>> movieValidator;
     private final Validator<Customer> customerValidator;
 
-    public RentalStatementProxyServiceImpl() {
-        this.customerValidator = new CustomerValidator();
-        this.movieValidator = new MovieValidator();
-        this.rentalStatementService = new RentalStatementServiceImpl();
+    public RentalStatementProxyServiceImpl(RentalStatementService rentalStatementService, Validator<List<MovieRental>> movieValidator, Validator<Customer> customerValidator) {
+        this.rentalStatementService = rentalStatementService;
+        this.movieValidator = movieValidator;
+        this.customerValidator = customerValidator;
     }
 
     @Override
@@ -26,10 +30,7 @@ public class RentalStatementProxyServiceImpl implements RentalStatementService {
     }
 
     private void validateInput(Customer customer) {
-        //TODO:need to handle this properly
         customerValidator.validate(customer);
-        //TODO:Need to think if validate a single record or multiple records
-        //Here multiple record validation seems efficient
         movieValidator.validate(customer.rentals());
     }
 }

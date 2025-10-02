@@ -20,26 +20,26 @@ class MovieValidatorTest {
     @Test
     void validateWhenMovieRentalIsNullOrEmptyThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> movieValidator.validate( null));
-        assertEquals("Movie Rentals can't be null or empty",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.MOVIE_RENTAL_NULL_OR_EMPTY.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> movieValidator.validate( Collections.EMPTY_LIST));
-        assertEquals("Movie Rentals can't be null or empty",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.MOVIE_RENTAL_NULL_OR_EMPTY.getMessage(),invalidInputException.getMessage());
     }
 
     @Test
     void validateWhenMovieIdIsNullOrEmptyThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> movieValidator.validate(List.of(new MovieRental(null,2))));
-        assertEquals("Movie Id can't be null or empty",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.MOVIE_ID_NULL_OR_EMPTY.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> movieValidator.validate(List.of(new MovieRental("",2))));
-        assertEquals("Movie Id can't be null or empty",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.MOVIE_ID_NULL_OR_EMPTY.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> movieValidator.validate(List.of(new MovieRental("  ",2))));
-        assertEquals("Movie Id can't be null or empty",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.MOVIE_ID_NULL_OR_EMPTY.getMessage(),invalidInputException.getMessage());
     }
 
     @Test
     void validateWhenRentalDaysAreInvalidThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> movieValidator.validate( List.of(new MovieRental("F001",0))));
-        assertEquals("Rental days should be positive",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.RENTAL_DAYS_SHOULD_BE_POSITIVE.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> movieValidator.validate(List.of(new MovieRental("F001",-2))));
-        assertEquals("Rental days should be positive",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.RENTAL_DAYS_SHOULD_BE_POSITIVE.getMessage(),invalidInputException.getMessage());
     }
 }

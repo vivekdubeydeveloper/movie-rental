@@ -9,10 +9,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TextFormatServiceTest {
-private FormatService formatService;
+private StatementFormatterService formatService;
     @BeforeEach
     void setUp() {
-        formatService=new TextFormatService();
+        formatService=new StatementTextFormatterServiceImpl();
     }
 
     @Test

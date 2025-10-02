@@ -19,20 +19,20 @@ class CustomerValidatorTest {
     @Test
     void validateWhenCustomerIsNullThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> customerValidator.validate(null));
-        assertEquals("Customer is null", invalidInputException.getMessage());
+        assertEquals(ValidationErrors.CUSTOMER_NULL.getMessage(), invalidInputException.getMessage());
     }
 
     @Test
     void validateWhenCustomerNameIsNullThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> customerValidator.validate(new Customer(null, null)));
-        assertEquals("Customer name is null or blank", invalidInputException.getMessage());
+        assertEquals(ValidationErrors.CUSTOMER_NAME_NULL_OR_BLANK.getMessage(), invalidInputException.getMessage());
     }
 
     @Test
     void validateWhenCustomerNameIsBlankOrEmptyThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> customerValidator.validate(new Customer("", null)));
-        assertEquals("Customer name is null or blank", invalidInputException.getMessage());
+        assertEquals(ValidationErrors.CUSTOMER_NAME_NULL_OR_BLANK.getMessage(), invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> customerValidator.validate(new Customer("   ", null)));
-        assertEquals("Customer name is null or blank", invalidInputException.getMessage());
+        assertEquals(ValidationErrors.CUSTOMER_NAME_NULL_OR_BLANK.getMessage(), invalidInputException.getMessage());
     }
 }

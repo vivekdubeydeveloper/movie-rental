@@ -1,15 +1,20 @@
 package com.etraveli.movierental.service.statement;
 
+import com.etraveli.movierental.dao.MovieDAO;
 import com.etraveli.movierental.exception.InvalidInputException;
 import com.etraveli.movierental.exception.MovieNotFoundException;
 import com.etraveli.movierental.model.Customer;
 import com.etraveli.movierental.model.MovieRental;
+import com.etraveli.movierental.model.MovieType;
+import com.etraveli.movierental.service.charge.strategy.*;
+import com.etraveli.movierental.service.format.StatementTextFormatterServiceImpl;
+import com.etraveli.movierental.validator.CustomerValidator;
+import com.etraveli.movierental.validator.MovieValidator;
+import com.etraveli.movierental.validator.ValidationErrors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -18,53 +23,57 @@ class RentalStatementProxyServiceImplTest {
     private RentalStatementService rentalStatementService;
     @BeforeEach
     void setUp() {
-        rentalStatementService = new RentalStatementProxyServiceImpl();
+        Map<MovieType, RentalChargeService> rentalChargeServiceCache = new EnumMap<>(MovieType.class);
+        rentalChargeServiceCache.put(MovieType.NEW,new NewMovieChargeService());
+        rentalChargeServiceCache.put(MovieType.REGULAR,new RegularMovieChargeService());
+        rentalChargeServiceCache.put(MovieType.CHILDREN,new ChildrenMovieChargeService());
+        rentalStatementService = new RentalStatementProxyServiceImpl(new RentalStatementServiceImpl(new MovieDAO(),new StatementTextFormatterServiceImpl(),new RentalChargeServiceResolverImpl(rentalChargeServiceCache)),new MovieValidator(),new CustomerValidator());
     }
 
     @Test
     void statementWhenCustomerIsNullThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(null));
-        assertEquals("Customer is null",invalidInputException.getMessage() );
+        assertEquals(ValidationErrors.CUSTOMER_NULL.getMessage(),invalidInputException.getMessage() );
     }
 
     @Test
     void statementWhenCustomerNameIsNullThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer(null, null)));
-        assertEquals("Customer name is null or blank",invalidInputException.getMessage() );
+        assertEquals(ValidationErrors.CUSTOMER_NAME_NULL_OR_BLANK.getMessage(),invalidInputException.getMessage() );
     }
 
     @Test
     void statementWhenCustomerNameIsBlankOrEmptyThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("", null)));
-        assertEquals("Customer name is null or blank",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.CUSTOMER_NAME_NULL_OR_BLANK.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("   ", null)));
-        assertEquals("Customer name is null or blank", invalidInputException.getMessage());
+        assertEquals(ValidationErrors.CUSTOMER_NAME_NULL_OR_BLANK.getMessage(), invalidInputException.getMessage());
     }
 
     @Test
     void statementWhenMovieRentalIsNullOrEmptyThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("vivek", null)));
-        assertEquals("Movie Rentals can't be null or empty",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.MOVIE_RENTAL_NULL_OR_EMPTY.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("vivek", Collections.EMPTY_LIST)));
-        assertEquals("Movie Rentals can't be null or empty",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.MOVIE_RENTAL_NULL_OR_EMPTY.getMessage(),invalidInputException.getMessage());
     }
 
     @Test
     void statementWhenMovieIdIsNullOrEmptyThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("vivek", List.of(new MovieRental(null,2)))));
-        assertEquals("Movie Id can't be null or empty",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.MOVIE_ID_NULL_OR_EMPTY.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("vivek", List.of(new MovieRental("",2)))));
-        assertEquals("Movie Id can't be null or empty",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.MOVIE_ID_NULL_OR_EMPTY.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("vivek", List.of(new MovieRental("  ",2)))));
-        assertEquals("Movie Id can't be null or empty",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.MOVIE_ID_NULL_OR_EMPTY.getMessage(),invalidInputException.getMessage());
     }
 
     @Test
     void statementWhenRentalDaysAreInvalidThenThrowInvalidInputException() {
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("vivek", List.of(new MovieRental("F001",0)))));
-        assertEquals("Rental days should be positive",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.RENTAL_DAYS_SHOULD_BE_POSITIVE.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("vivek", List.of(new MovieRental("F001",-2)))));
-        assertEquals("Rental days should be positive",invalidInputException.getMessage());
+        assertEquals(ValidationErrors.RENTAL_DAYS_SHOULD_BE_POSITIVE.getMessage(),invalidInputException.getMessage());
     }
 
     @Test

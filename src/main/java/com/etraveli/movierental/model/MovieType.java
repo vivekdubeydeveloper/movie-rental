@@ -3,5 +3,5 @@ package com.etraveli.movierental.model;
 public enum MovieType {
     REGULAR,
     NEW,
-    CHILDRENS
+    CHILDREN
 }

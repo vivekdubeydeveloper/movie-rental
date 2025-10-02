@@ -1,6 +1,5 @@
 package com.etraveli.movierental.service.charge.strategy;
 
-import com.etraveli.movierental.model.MovieType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,7 @@ class NewMovieChargeServiceTest {
     private RentalChargeService newMovieChargeService;
     @BeforeEach
     void setUp() {
-        newMovieChargeService= RentalChargeServiceFactory.getRentalChargeService(MovieType.NEW);
+        newMovieChargeService= new NewMovieChargeService();
     }
 
     @Test

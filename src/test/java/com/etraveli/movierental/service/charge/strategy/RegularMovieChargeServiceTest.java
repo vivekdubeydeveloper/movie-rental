@@ -1,16 +1,15 @@
 package com.etraveli.movierental.service.charge.strategy;
 
-import com.etraveli.movierental.model.MovieType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RegularMovieChargeServiceTest {
     private RentalChargeService regularMovieChargeService;
     @BeforeEach
     void setUp() {
-        regularMovieChargeService= RentalChargeServiceFactory.getRentalChargeService(MovieType.REGULAR);
+        regularMovieChargeService= new RegularMovieChargeService();
     }
 
     @Test
