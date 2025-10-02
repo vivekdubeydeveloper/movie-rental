@@ -7,15 +7,14 @@ public class NewMovieChargeService implements RentalChargeService {
     private static final int FREQUENT_ENTER_BONUS_POINTS=2;
     @Override
     public double calculateCharge(int daysRented) {
-        double thisAmount = daysRented * DAILY_RATE;
-        return thisAmount;
+        return daysRented * DAILY_RATE;
     }
 
     @Override
     public int calculateFrequentEnterPoints(int daysRented) {
         if(daysRented > BASE_DAYS){
             return FREQUENT_ENTER_BONUS_POINTS;
-        };
+        }
         return FREQUENT_ENTER_BASE_POINTS;
     }
 }
