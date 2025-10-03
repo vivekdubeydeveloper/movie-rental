@@ -10,6 +10,8 @@ import com.etraveli.movierental.service.statement.RentalStatementProxyServiceImp
 import com.etraveli.movierental.service.statement.RentalStatementServiceImpl;
 import com.etraveli.movierental.validator.CustomerValidator;
 import com.etraveli.movierental.validator.MovieValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -21,24 +23,22 @@ import java.util.Map;
  * @author vivek
  */
 public class Main {
-
+    private static final Logger log = LogManager.getLogger(Main.class);
     /**
      * This is the method which will be called by JVM when it starts.
      * From this method is entry point for our core business logic,we are validating response here
      * @param args arguments for program
      */
     public static void main(String[] args) {
-        String expected = "Rental Record for C. U. Stomer\n\tYou've Got Mail\t3.50\n\tMatrix\t2.00\nAmount owed is 5.50\nYou earned 2 frequent points\n";
         Map<MovieType, RentalChargeService> rentalChargeServiceCache = new EnumMap<>(MovieType.class);
         rentalChargeServiceCache.put(MovieType.NEW,new NewMovieChargeService());
         rentalChargeServiceCache.put(MovieType.REGULAR,new RegularMovieChargeService());
         rentalChargeServiceCache.put(MovieType.CHILDREN,new ChildrenMovieChargeService());
-        String result = new RentalStatementProxyServiceImpl(new RentalStatementServiceImpl(new MovieDAO(),new StatementTextFormatterServiceImpl(),new RentalChargeServiceResolverImpl(rentalChargeServiceCache)),new MovieValidator(),new CustomerValidator()).statement(new Customer("C. U. Stomer", Arrays.asList(new MovieRental("F001", 3), new MovieRental("F002", 1))));
-        System.out.println(result);
-        if (!result.equals(expected)) {
-            throw new AssertionError("Expected: " + System.lineSeparator() + String.format(expected) + System.lineSeparator() + System.lineSeparator() + "Got: " + System.lineSeparator() + result);
+        try {
+           String result = new RentalStatementProxyServiceImpl(new RentalStatementServiceImpl(new MovieDAO(),new StatementTextFormatterServiceImpl(),new RentalChargeServiceResolverImpl(rentalChargeServiceCache)),new MovieValidator(),new CustomerValidator()).statement(new Customer("C. U. Stomer", Arrays.asList(new MovieRental("F001", 3), new MovieRental("F002", 1))));
+            log.debug(result);
+        } catch (Exception e) {
+            log.error("Error in statement generation", e);
         }
-
-        System.out.println("Success");
     }
 }

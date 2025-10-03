@@ -3,6 +3,8 @@ package com.etraveli.movierental.service.statement;
 import com.etraveli.movierental.model.Customer;
 import com.etraveli.movierental.model.MovieRental;
 import com.etraveli.movierental.validator.Validator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
  * @author vivek
  */
 public class RentalStatementProxyServiceImpl implements RentalStatementService {
+    private static final Logger log = LogManager.getLogger(RentalStatementProxyServiceImpl.class);
     private final RentalStatementService rentalStatementService;
     private final Validator<List<MovieRental>> movieValidator;
     private final Validator<Customer> customerValidator;
@@ -26,6 +29,7 @@ public class RentalStatementProxyServiceImpl implements RentalStatementService {
     @Override
     public String statement(Customer customer) {
         validateInput(customer);
+        log.info("Customer :{} input is valid",customer.name());
         return rentalStatementService.statement(customer);
     }
 
