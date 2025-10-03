@@ -4,12 +4,8 @@ import com.etraveli.movierental.model.MovieType;
 
 import java.util.Map;
 
-public class RentalChargeServiceResolverImpl implements RentalChargeServiceResolver {
-    private final Map<MovieType, RentalChargeService> rentalChargeServiceCache;
-
-    public RentalChargeServiceResolverImpl(Map<MovieType, RentalChargeService> rentalChargeServiceCache) {
-        this.rentalChargeServiceCache = rentalChargeServiceCache;
-    }
+public record RentalChargeServiceResolverImpl(
+        Map<MovieType, RentalChargeService> rentalChargeServiceCache) implements RentalChargeServiceResolver {
 
     @Override
     public RentalChargeService resolve(MovieType movieType) {
