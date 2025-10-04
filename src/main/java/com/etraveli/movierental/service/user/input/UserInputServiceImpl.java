@@ -92,9 +92,4 @@ public class UserInputServiceImpl implements InputService {
     private void ignoreNewLine(Scanner sc) {
         sc.nextLine();
     }
-
-    public static void main(String[] args) {
-        UserInputServiceImpl userInputService = new UserInputServiceImpl();
-        userInputService.takeInput();
-    }
 }
