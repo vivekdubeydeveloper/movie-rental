@@ -5,6 +5,10 @@ import com.etraveli.movierental.model.MovieType;
 
 import java.util.HashMap;
 
+/**
+ * Implementation of DAO for Movie
+ * @author vivek
+ */
 public class MovieDAO implements DAO {
     private static final HashMap<String, Movie> movies = new HashMap<>();
 
@@ -15,6 +19,11 @@ public class MovieDAO implements DAO {
         movies.put("F004", new Movie("Fast & Furious X", MovieType.NEW));
     }
 
+    /**
+     * Search movie by id
+     * @param id unique id for movie
+     * @return Movie
+     */
     @Override
     public Movie findById(String id) {
         return movies.get(id);

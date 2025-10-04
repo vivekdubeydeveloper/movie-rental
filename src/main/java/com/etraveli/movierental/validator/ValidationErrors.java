@@ -1,5 +1,9 @@
 package com.etraveli.movierental.validator;
 
+/**
+ * Enum keeping error strings will be used as message while throwing exceptions
+ * @author vivek
+ */
 public enum ValidationErrors {
     BLANK_NAME_INPUT("Name cannot be blank or empty"),
     CUSTOMER_NULL("Customer object can't be null"),

@@ -9,8 +9,20 @@ import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * This class will format the rental statement as string and return to caller
+ * @author vivek
+ */
 public class StatementTextFormatterServiceImpl implements StatementFormatterService {
     private static final Logger log = LogManager.getLogger(StatementTextFormatterServiceImpl.class);
+
+    /**
+     * This method will generate formatted rental statement based on the customer name
+     * and rentalStatements. This method will format rental statement as String.
+     * @param customerName name of customer
+     * @param rentalStatements List of rentalStatements, a rental statement encapsulate movieTitle,charges and frequentEnterPoints
+     * @return statement as formatted String
+     */
     @Override
     public String formatStatement(String customerName, List<RentalStatement> rentalStatements) {
         StringBuilder sb = new StringBuilder();

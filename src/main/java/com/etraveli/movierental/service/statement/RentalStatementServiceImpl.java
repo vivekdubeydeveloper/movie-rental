@@ -17,6 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This is actual business service which will calculate rental charge and frequent enter points for each movie.
+ * It is collecting the data in  List<RentalStatement> and sends to StatementFormatter Service to Format the statement
+ * @author vivek
+ */
+
 public class RentalStatementServiceImpl implements RentalStatementService {
     private static final Logger log = LogManager.getLogger(RentalStatementServiceImpl.class);
     private final DAO movieDAO;
@@ -29,6 +35,19 @@ public class RentalStatementServiceImpl implements RentalStatementService {
         this.rentalChargeServiceResolver = rentalChargeServiceResolver;
     }
 
+    /**
+     * This method get rental statement information and forward to statement Formatter for creating the formatted rental statement.
+     * This method fetch movie from movieDAO if movie is not found in DB then it throws exception.
+     * If movie is found in DB it finds appropriate RentalChargeService implementation on the base of movie type
+     * with the help of RentalChargeServiceResolver.
+     * RentalChargeServiceResolver return the appropriate object form its cache based on the movie type i.e.
+     * if movieType is CHILDREN it will return ChildrenMovieChargeService object and so on
+     * This method use the returned object from above step to calculate charges and frequent enter points by calling methods
+     * This method store calculate charges,frequent enter points data in List<RentalStatement>
+     * After collecting the data this method call Formatter Service with the data to generate formatted rental statement
+     * @param customer object of customer
+     * @return rental statement as formatted String
+     */
     public String statement(Customer customer) {
     List<RentalStatement> rentalStatements = new ArrayList<>();
 
