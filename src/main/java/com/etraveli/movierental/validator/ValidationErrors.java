@@ -1,6 +1,7 @@
 package com.etraveli.movierental.validator;
 
 public enum ValidationErrors {
+    BLANK_NAME_INPUT("Name cannot be blank or empty"),
     CUSTOMER_NULL("Customer object can't be null"),
     CUSTOMER_NAME_NULL_OR_BLANK("Customer name can't be null or blank"),
     MOVIE_RENTAL_NULL_OR_EMPTY("Movie Rentals can't be null or empty"),

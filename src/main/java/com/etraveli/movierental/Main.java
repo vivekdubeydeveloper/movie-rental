@@ -2,12 +2,14 @@ package com.etraveli.movierental;
 
 import com.etraveli.movierental.dao.MovieDAO;
 import com.etraveli.movierental.model.Customer;
+import com.etraveli.movierental.model.InputType;
 import com.etraveli.movierental.model.MovieRental;
 import com.etraveli.movierental.model.MovieType;
 import com.etraveli.movierental.service.charge.strategy.*;
 import com.etraveli.movierental.service.format.StatementTextFormatterServiceImpl;
 import com.etraveli.movierental.service.statement.RentalStatementProxyServiceImpl;
 import com.etraveli.movierental.service.statement.RentalStatementServiceImpl;
+import com.etraveli.movierental.service.user.input.*;
 import com.etraveli.movierental.validator.CustomerValidator;
 import com.etraveli.movierental.validator.MovieValidator;
 import org.apache.logging.log4j.LogManager;
@@ -30,15 +32,34 @@ public class Main {
      * @param args arguments for program
      */
     public static void main(String[] args) {
-        Map<MovieType, RentalChargeService> rentalChargeServiceCache = new EnumMap<>(MovieType.class);
-        rentalChargeServiceCache.put(MovieType.NEW,new NewMovieChargeService());
-        rentalChargeServiceCache.put(MovieType.REGULAR,new RegularMovieChargeService());
-        rentalChargeServiceCache.put(MovieType.CHILDREN,new ChildrenMovieChargeService());
         try {
-           String result = new RentalStatementProxyServiceImpl(new RentalStatementServiceImpl(new MovieDAO(),new StatementTextFormatterServiceImpl(),new RentalChargeServiceResolverImpl(rentalChargeServiceCache)),new MovieValidator(),new CustomerValidator()).statement(new Customer("C. U. Stomer", Arrays.asList(new MovieRental("F001", 3), new MovieRental("F002", 1))));
+            //Customer customer = takeInput(InputType.FIXED);
+            Customer customer = takeInput(InputType.USER_INPUT);
+            String result = new RentalStatementProxyServiceImpl(new RentalStatementServiceImpl(new MovieDAO(),new StatementTextFormatterServiceImpl(),new RentalChargeServiceResolverImpl(createRentalChargeServiceCache())),new MovieValidator(),new CustomerValidator()).statement(customer);
             log.debug(result);
         } catch (Exception e) {
             log.error("Error in statement generation", e);
         }
+    }
+
+    private static Customer takeInput(InputType inputType) {
+        InputServiceResolver inputServiceResolver = createInputServiceResolver();
+        InputService userInputService =inputServiceResolver.resolve(inputType);
+        return userInputService.takeInput();
+    }
+
+    private static InputServiceResolver createInputServiceResolver() {
+        Map<InputType, InputService> inputServiceCache = new EnumMap<>(InputType.class);
+        inputServiceCache.put(InputType.FIXED,new FixedInputServiceImpl());
+        inputServiceCache.put(InputType.USER_INPUT,new UserInputServiceImpl());
+        return new InputServiceResolverImpl(inputServiceCache);
+    }
+
+    private static Map<MovieType, RentalChargeService> createRentalChargeServiceCache(){
+        Map<MovieType, RentalChargeService> rentalChargeServiceCache = new EnumMap<>(MovieType.class);
+        rentalChargeServiceCache.put(MovieType.NEW,new NewMovieChargeService());
+        rentalChargeServiceCache.put(MovieType.REGULAR,new RegularMovieChargeService());
+        rentalChargeServiceCache.put(MovieType.CHILDREN,new ChildrenMovieChargeService());
+        return rentalChargeServiceCache;
     }
 }
