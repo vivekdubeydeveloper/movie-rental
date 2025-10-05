@@ -4,6 +4,7 @@ import com.etraveli.movierental.model.Movie;
 
 /**
  * Contract for DB Layer
+ *
  * @author vivek
  */
 public interface DAO {

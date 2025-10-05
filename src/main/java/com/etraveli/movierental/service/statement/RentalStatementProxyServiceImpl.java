@@ -13,6 +13,7 @@ import java.util.List;
  * Here we are doing preprocessing i.e. data validation
  * if preprocessing fails it throws exceptions
  * else call to RentalStatementService to generate the statement
+ *
  * @author vivek
  */
 public class RentalStatementProxyServiceImpl implements RentalStatementService {
@@ -30,13 +31,14 @@ public class RentalStatementProxyServiceImpl implements RentalStatementService {
     /**
      * This function validates the customer object if object is invalid it throws exception
      * if Object is valid it calls RentalStatementService for rental statement generation
+     *
      * @param customer customer name with rental details
      * @return statement string
      */
     @Override
     public String statement(Customer customer) {
         validateInput(customer);
-        log.info("Customer :{} input is valid",customer.name());
+        log.info("Customer :{} input is valid", customer.name());
         return rentalStatementService.statement(customer);
     }
 

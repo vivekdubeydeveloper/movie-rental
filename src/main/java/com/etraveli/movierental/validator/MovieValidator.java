@@ -9,12 +9,14 @@ import java.util.Objects;
 /**
  * This class validates list MovieRental objects
  * If objects are invalid throws RuntimeException
+ *
  * @author vivek
  */
 public class MovieValidator implements Validator<List<MovieRental>> {
 
     /**
      * This method validates the List of movieRentals, if invalid throws InvalidInputException
+     *
      * @param movieRentals object of movieRentals
      */
     @Override

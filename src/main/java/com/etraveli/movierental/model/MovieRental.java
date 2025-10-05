@@ -2,9 +2,10 @@ package com.etraveli.movierental.model;
 
 /**
  * Model for storing Movie Rental Details
- * @author vivek
+ *
  * @param movieId unique id for movie
- * @param days no of rental days
+ * @param days    no of rental days
+ * @author vivek
  */
 public record MovieRental(String movieId, int days) {
 }

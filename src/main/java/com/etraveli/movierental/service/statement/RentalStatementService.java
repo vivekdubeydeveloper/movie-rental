@@ -4,6 +4,7 @@ import com.etraveli.movierental.model.Customer;
 
 /**
  * This interface keeps contract of statement generation
+ *
  * @author vivek
  */
 public interface RentalStatementService {

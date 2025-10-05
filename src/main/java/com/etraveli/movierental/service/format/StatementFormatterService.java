@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * This is contract for format the rental statement
+ *
  * @author vivek
  */
 public interface StatementFormatterService {

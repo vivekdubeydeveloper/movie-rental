@@ -23,6 +23,7 @@ import java.util.Map;
  * This class create all the required dependencies and inject in other classes
  * We can run this class to test the application
  * This class does not contain any business logic so this is not in the scope of testing
+ *
  * @author vivek
  */
 public class Main {
@@ -33,6 +34,7 @@ public class Main {
      * This method is an entry point for our core business logic
      * In this method we are creating all the dependencies with the help of helper method,injecting in the appropriate object
      * In this method we are creating input for application
+     *
      * @param args command line arguments for program
      */
     public static void main(String[] args) {

@@ -2,6 +2,7 @@ package com.etraveli.movierental.validator;
 
 /**
  * Enum keeping error strings will be used as message while throwing exceptions
+ *
  * @author vivek
  */
 public enum ValidationErrors {
@@ -14,6 +15,7 @@ public enum ValidationErrors {
     MOVIE_NOT_FOUND("Movie %s not found");
 
     private final String message;
+
     ValidationErrors(String message) {
         this.message = message;
     }

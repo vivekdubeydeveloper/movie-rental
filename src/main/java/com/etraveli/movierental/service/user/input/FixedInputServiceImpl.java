@@ -7,12 +7,14 @@ import java.util.Arrays;
 
 /**
  * This class will provide Fixed input to main method
+ *
  * @author vivek
  */
-public class FixedInputServiceImpl implements InputService{
+public class FixedInputServiceImpl implements InputService {
 
     /**
      * This method return fixed customer
+     *
      * @return Customer
      */
     @Override

@@ -4,6 +4,7 @@ import com.etraveli.movierental.model.Customer;
 
 /**
  * This is contract for taking input
+ *
  * @author vivek
  */
 public interface InputService {

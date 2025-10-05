@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 /**
  * Implementation of DAO for Movie
+ *
  * @author vivek
  */
 public class MovieDAO implements DAO {
@@ -21,6 +22,7 @@ public class MovieDAO implements DAO {
 
     /**
      * Search movie by id
+     *
      * @param id unique id for movie
      * @return Movie
      */

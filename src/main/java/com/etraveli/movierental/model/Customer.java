@@ -4,9 +4,10 @@ import java.util.List;
 
 /**
  * Model for storing customer data
- * @author vivek
- * @param name name of customer
+ *
+ * @param name    name of customer
  * @param rentals information of rented movies
+ * @author vivek
  */
 public record Customer(String name, List<MovieRental> rentals) {
 }

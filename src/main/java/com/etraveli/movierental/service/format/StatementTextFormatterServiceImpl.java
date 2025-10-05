@@ -11,6 +11,7 @@ import java.util.Locale;
 
 /**
  * This class will format the rental statement as string and return to caller
+ *
  * @author vivek
  */
 public class StatementTextFormatterServiceImpl implements StatementFormatterService {
@@ -19,7 +20,8 @@ public class StatementTextFormatterServiceImpl implements StatementFormatterServ
     /**
      * This method will generate formatted rental statement based on the customer name
      * and rentalStatements. This method will format rental statement as String.
-     * @param customerName name of customer
+     *
+     * @param customerName     name of customer
      * @param rentalStatements List of rentalStatements, a rental statement encapsulate movieTitle,charges and frequentEnterPoints
      * @return statement as formatted String
      */
@@ -44,7 +46,7 @@ public class StatementTextFormatterServiceImpl implements StatementFormatterServ
         }
         sb.append(String.format("Amount owed is %s\n", currencyFormat.format(totalAmount)));
         sb.append(String.format("You earned %d frequent points\n", frequentEnterPoints));
-        log.info("Rental statement generated successfully for customer: {}",customerName);
+        log.info("Rental statement generated successfully for customer: {}", customerName);
         return sb.toString();
     }
 }
