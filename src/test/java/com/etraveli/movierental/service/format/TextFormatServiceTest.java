@@ -1,6 +1,8 @@
 package com.etraveli.movierental.service.format;
 
 import com.etraveli.movierental.model.RentalStatement;
+import com.etraveli.movierental.service.rental.statement.formatter.StatementFormatterService;
+import com.etraveli.movierental.service.rental.statement.formatter.StatementTextFormatterServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

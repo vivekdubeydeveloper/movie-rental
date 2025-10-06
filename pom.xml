@@ -14,6 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit-jupiter-version>5.13.4</junit-jupiter-version>
         <log4j2.version>2.25.2</log4j2.version>
+        <jacoco-maven-plugin-version>0.8.11</jacoco-maven-plugin-version>
+        <maven-shade-plugin-version>3.6.1</maven-shade-plugin-version>
     </properties>
     <dependencies>
         <!--Logging-->
@@ -48,7 +50,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.11</version> <executions>
+                <version>${jacoco-maven-plugin-version}</version> <executions>
                 <execution>
                     <id>prepare-agent</id>
                     <goals>
@@ -72,7 +74,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>${maven-shade-plugin-version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>

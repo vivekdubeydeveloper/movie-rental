@@ -1,12 +1,12 @@
-package com.etraveli.movierental.service.statement;
+package com.etraveli.movierental.service.rental.statement;
 
 import com.etraveli.movierental.dao.MovieDAO;
 import com.etraveli.movierental.exception.MovieNotFoundException;
 import com.etraveli.movierental.model.Customer;
 import com.etraveli.movierental.model.MovieRental;
 import com.etraveli.movierental.model.MovieType;
-import com.etraveli.movierental.service.charge.strategy.*;
-import com.etraveli.movierental.service.format.StatementTextFormatterServiceImpl;
+import com.etraveli.movierental.service.rental.statement.formatter.StatementTextFormatterServiceImpl;
+import com.etraveli.movierental.service.rental.charge.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

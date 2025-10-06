@@ -37,6 +37,7 @@ class MovieValidatorTest {
 
     @Test
     void validateWhenRentalDaysAreInvalidThenThrowInvalidInputException() {
+        //Test case when rental days are 0 or less than 0
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> movieValidator.validate( List.of(new MovieRental("F001",0))));
         assertEquals(ValidationErrors.RENTAL_DAYS_SHOULD_BE_POSITIVE.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> movieValidator.validate(List.of(new MovieRental("F001",-2))));

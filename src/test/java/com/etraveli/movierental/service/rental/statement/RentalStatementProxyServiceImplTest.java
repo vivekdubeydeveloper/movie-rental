@@ -1,4 +1,4 @@
-package com.etraveli.movierental.service.statement;
+package com.etraveli.movierental.service.rental.statement;
 
 import com.etraveli.movierental.dao.MovieDAO;
 import com.etraveli.movierental.exception.InvalidInputException;
@@ -6,8 +6,8 @@ import com.etraveli.movierental.exception.MovieNotFoundException;
 import com.etraveli.movierental.model.Customer;
 import com.etraveli.movierental.model.MovieRental;
 import com.etraveli.movierental.model.MovieType;
-import com.etraveli.movierental.service.charge.strategy.*;
-import com.etraveli.movierental.service.format.StatementTextFormatterServiceImpl;
+import com.etraveli.movierental.service.rental.statement.formatter.StatementTextFormatterServiceImpl;
+import com.etraveli.movierental.service.rental.charge.*;
 import com.etraveli.movierental.validator.CustomerValidator;
 import com.etraveli.movierental.validator.MovieValidator;
 import com.etraveli.movierental.validator.ValidationErrors;
@@ -70,6 +70,7 @@ class RentalStatementProxyServiceImplTest {
 
     @Test
     void statementWhenRentalDaysAreInvalidThenThrowInvalidInputException() {
+        //When rental days are 0 or less than 0
         InvalidInputException invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("vivek", List.of(new MovieRental("F001",0)))));
         assertEquals(ValidationErrors.RENTAL_DAYS_SHOULD_BE_POSITIVE.getMessage(),invalidInputException.getMessage());
         invalidInputException = assertThrows(InvalidInputException.class, () -> rentalStatementService.statement(new Customer("vivek", List.of(new MovieRental("F001",-2)))));

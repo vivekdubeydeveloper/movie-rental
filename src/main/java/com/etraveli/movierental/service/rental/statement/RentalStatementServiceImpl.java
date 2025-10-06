@@ -1,4 +1,4 @@
-package com.etraveli.movierental.service.statement;
+package com.etraveli.movierental.service.rental.statement;
 
 import com.etraveli.movierental.dao.DAO;
 import com.etraveli.movierental.exception.MovieNotFoundException;
@@ -6,9 +6,9 @@ import com.etraveli.movierental.model.Customer;
 import com.etraveli.movierental.model.Movie;
 import com.etraveli.movierental.model.MovieRental;
 import com.etraveli.movierental.model.RentalStatement;
-import com.etraveli.movierental.service.charge.strategy.RentalChargeService;
-import com.etraveli.movierental.service.charge.strategy.RentalChargeServiceResolver;
-import com.etraveli.movierental.service.format.StatementFormatterService;
+import com.etraveli.movierental.service.rental.charge.RentalChargeService;
+import com.etraveli.movierental.service.rental.charge.RentalChargeServiceResolver;
+import com.etraveli.movierental.service.rental.statement.formatter.StatementFormatterService;
 import com.etraveli.movierental.validator.ValidationErrors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,7 +41,7 @@ public class RentalStatementServiceImpl implements RentalStatementService {
      * This method fetch movie from movieDAO if movie is not found in DB then it throws exception.
      * If movie is found in DB it finds appropriate RentalChargeService implementation on the base of movie type
      * with the help of RentalChargeServiceResolver.
-     * RentalChargeServiceResolver return the appropriate object form its cache based on the movie type i.e.
+     * RentalChargeServiceResolver return the appropriate object form its cache, based on the movie type i.e.
      * if movieType is CHILDREN it will return ChildrenMovieChargeService object and so on
      * This method use the returned object from above step to calculate charges and frequent enter points by calling methods
      * This method store calculate charges,frequent enter points data in List<RentalStatement>

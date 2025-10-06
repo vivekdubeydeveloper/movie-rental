@@ -1,4 +1,4 @@
-package com.etraveli.movierental.service.charge.strategy;
+package com.etraveli.movierental.service.rental.charge;
 
 /**
  * This class calculate charge and frequent enter points for new movie based on the days rented

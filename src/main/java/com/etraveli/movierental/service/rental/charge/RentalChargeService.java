@@ -1,4 +1,4 @@
-package com.etraveli.movierental.service.charge.strategy;
+package com.etraveli.movierental.service.rental.charge;
 
 /**
  * This is contract for calculating movie rental charges and frequent enter points based on days rented

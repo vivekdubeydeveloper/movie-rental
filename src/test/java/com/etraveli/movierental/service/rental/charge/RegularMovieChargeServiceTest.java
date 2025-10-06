@@ -1,4 +1,4 @@
-package com.etraveli.movierental.service.charge.strategy;
+package com.etraveli.movierental.service.rental.charge;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

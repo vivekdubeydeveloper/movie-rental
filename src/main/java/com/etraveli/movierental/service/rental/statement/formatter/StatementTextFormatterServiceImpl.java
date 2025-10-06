@@ -1,4 +1,4 @@
-package com.etraveli.movierental.service.format;
+package com.etraveli.movierental.service.rental.statement.formatter;
 
 import com.etraveli.movierental.model.RentalStatement;
 import org.apache.logging.log4j.LogManager;

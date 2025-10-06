@@ -26,9 +26,9 @@ private InputService inputService;
     }
 
     @Test
-    void takeInputWhenInputIsInvalidValidCombinationThenGetExpectedOutput() {
+    void takeInputWhenInputIsCombinationOfInvalidValidDataThenGetExpectedOutput() {
         //This testcase is combination of first invalid input then valid input
-        //First movie id is blank,then movie id value is there but rented days are 0
+        //First movie id is blank,then movie id has value but rented days are 0
         //then correct movie id and rented days 3 with n for no more rental record to
         //add
         String input = "Vivek\n \nF0001\n0\nF001\n3\nn";

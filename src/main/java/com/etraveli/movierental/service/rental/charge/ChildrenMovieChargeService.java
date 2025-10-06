@@ -1,4 +1,4 @@
-package com.etraveli.movierental.service.charge.strategy;
+package com.etraveli.movierental.service.rental.charge;
 
 /**
  * This class calculate charge and frequent enter points for children movie based on the days rented
@@ -21,7 +21,7 @@ public class ChildrenMovieChargeService implements RentalChargeService {
     public double calculateCharge(int daysRented) {
         double thisAmount = BASE_CHARGE;
         if (daysRented > BASE_DAYS) {
-            thisAmount = ((daysRented - BASE_DAYS) * DAILY_RATE) + thisAmount;
+            thisAmount +=(daysRented - BASE_DAYS) * DAILY_RATE;
         }
         return thisAmount;
     }

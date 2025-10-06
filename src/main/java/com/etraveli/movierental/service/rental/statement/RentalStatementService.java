@@ -1,4 +1,4 @@
-package com.etraveli.movierental.service.statement;
+package com.etraveli.movierental.service.rental.statement;
 
 import com.etraveli.movierental.model.Customer;
 

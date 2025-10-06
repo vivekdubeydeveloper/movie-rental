@@ -14,7 +14,7 @@ private InputService inputService;
     }
 
     @Test
-    void takeInput() {
+    void takeInputWhenTakingInputFromFixedInputServiceImplThenGetExpectedCustomer() {
         Customer customer = inputService.takeInput();
         assertNotNull(customer);
         assertEquals("C. U. Stomer",customer.name());

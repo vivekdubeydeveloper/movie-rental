@@ -24,11 +24,11 @@ public class UserInputServiceImpl implements InputService {
     public Customer takeInput() {
         Scanner sc = new Scanner(System.in);
 
-        //Ask for user name
+        //Ask for customer name
         System.out.print("Enter Your Name: ");
         String customerName = sc.nextLine();
 
-        //if invalid username stop the process and throw exception
+        //if invalid customer name stop the process and throw exception
         if (customerName.isBlank()) {
             System.out.println("Name cannot be blank");
             System.out.println("exiting");
