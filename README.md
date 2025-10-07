@@ -35,49 +35,49 @@ To build and run the application we need to install following software programs
 * GIT client (Optional)(https://git-scm.com/downloads)
 
 ## Before Build And Run
-* For build and run the project,you need JDK 21 should be installed and your maven is pointing to JDK 21
+* For build and run the project,JDK 21 should be installed on your machine and Maven should point to the JDK 21
 * Open command prompt on your machine 
-* Check your Java/JDK version using the below command.It should tell version 21
+* Check your Java/JDK version using the below command.It should tell if you are using JDK 21 or not
 ```
    java --version
    ```
-* Check your maven version using below command,it will tell you java version maven is pointing
+* Check your maven version using the below command,it will also tell you Maven is pointing to which Java/JDK version
 ```
    mvn --version
    ```
-* If maven java version is not 21,set the JAVA_HOME environment variable,if you want to set it from command prompt temporarily use the below command
+* If maven java version is not 21,set the JAVA_HOME environment variable,if you want to set it from the command prompt temporarily use the below command
 ```
    set JAVA_HOME="<Path of JDK21>"
    ```
-* You can refer to the link https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html for setting JAVA_HOME environment variable
-* Once JAVA_HOME again check and confirm maven is pointing to JDK 21 using above commands.
-* If everything is working fine till here,now we can move forward for project setup.
+* You can refer to the link https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html for setting the JAVA_HOME environment variable
+* Once JAVA_HOME is set again check and confirm if maven is pointing to JDK 21 using above commands.
+* If everything is working fine till here,now we can move forward for the project setup.
 
-**Note:All the mentioned above steps,I have tried on Windows Machine,similar steps will work for other OS(Linux,Mac) also,which we can search from internet.**
+**Note:All the above steps,I have tried on Windows Machine,similar steps will work for other OS(Linux,Mac) also.**
 
 ## Download/Checkout the project 
 * Open the url https://github.com/vivekdubeydeveloper/movie-rental in web browser
 * Click on the code button
-* If you are using GIT client,copy https url.
-* Open git bash from the folder where you want to check out the project and run the below clone command from GIT bash
+* If you are using GIT client,copy **https url**.
+* Open git bash from the folder where you want to check out the project and run the below **clone command** from GIT bash
 ```
    git clone https://github.com/vivekdubeydeveloper/movie-rental.git
    ```
-* It will download movie-rental project in your folder
+* It will download the movie-rental project in your folder
 * If you are not using git client, when you click on the Code button, you will see the Download Zip menu, click on menu.
-* It will download movie-rental-maser.zip file,copy it in appropriate directory.Unzip it, you will get the project in movie-rental-maser folder
+* It will download movie-rental-maser.zip file,copy it in the appropriate directory.Unzip it, you will get the project files in the movie-rental-maser folder
 
 
 ## Steps To Build and Run Code From IntelliJ
 * Open the project in Intellij.
-* Click in Intellij File->Project Structure menu,select SDK 21 in project,module as well as SDK
+* Click in Intellij File->Project Structure menu,select SDK 21 for project,module as well as SDK
 * Apply the setting.
-* Open terminal in the intellij,run the below command it will clean,build and run the test cases(make sure JAVA_HOME is pointing to JDK 21).
+* Open terminal in the intellij,run the below command, it will clean,build and run the test cases(make sure JAVA_HOME is pointing to JDK 21).
    ```
    mvn clean install
    ```
 * Jacoco plugin is configured in the pom file so it will generate code coverage html file on the mentioned path <projectfolder>/target/site/jacoco/index.html.Go inside the folder and open the file in any web browser(Chrome,Firefox,IE) to see the test coverage report.
-* For running test cases only use the below command
+* For running test cases only,use the below command
    ```
    mvn test
    ```
@@ -91,12 +91,12 @@ To build and run the application we need to install following software programs
 
 * Open command prompt 
 * Run cd(change directory) command to go inside unzip project folder(movie-rental-master) path.
-* You need to verify if JDK,JAVA_HOME and Maven It should be as per above section **Before Build And Run**.
+* You need to verify if JDK,JAVA_HOME and Maven are as per above section **Before Build And Run**(Correct versions).
 * Run the below command from command prompt,It will clean,build and run the test cases
    ```
    mvn clean install
    ```
-* For running the test cases only use the below command
+* For running the test cases only, use the below command
    ```
    mvn test
    ```
@@ -104,7 +104,7 @@ To build and run the application we need to install following software programs
    ```
    mvn verify
    ```  
-* For running the code,run the below commands from command prompt(You should go inside the target folder using cd command,jar file should be there if you have run the above maven commands)
+* For running the code,run the below commands from the command prompt(You should go inside the target folder using cd command,jar file should be there if you have run the above maven commands)
    ```
    cd <path to target folder>
    java -cp movie-rental-1.0-SNAPSHOT.jar com.etraveli.movierental.Main
