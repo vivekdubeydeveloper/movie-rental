@@ -19,64 +19,64 @@ This application performs following steps
 * The application takes customer name,movie ids and corresponding rental days as input
 * The application validates input provided by user
 * If any inputs are invalid application throws exception and flow is terminated
-* If input are valid, the application calculates the charge and the frequent enter points for each movie
-* The application uses charges and frequent enter points data and generate formatted rental statement
+* If inputs are valid, the application calculates the charge and the frequent enter points for each movie
+* The application uses charges and frequent enter points data to generate formatted rental statement
 
-For better code flow understanding we can check below flow diagram
+For better understanding of the code flow,we can check the below flow diagram
 
 <img src="movie-rental-flow-diagram.png" alt="movie-rental-flow-diagram" width="700" height="600">
 
 
 ## Prerequisites
-To build and run the application we need following tools
+To build and run the application we need to install following software programs
 * JDK 21(https://www.oracle.com/se/java/technologies/downloads/#java21)
-* Maven 3.9.4(https://maven.apache.org/download.cgi)(I have tested for this version,It should work with other versions also)
+* Maven 3.9.4(https://maven.apache.org/download.cgi) (I have tested with this maven version,I think It should work with other maven versions also)
 * Intellij(https://www.jetbrains.com/idea/download/?section=windows)
 * GIT client (Optional)(https://git-scm.com/downloads)
 
-**If the above software packages are not installed on your system, install them.**
-
 ## Before Build And Run
+* For build and run the project,you need JDK 21 should be installed and your maven is pointing to JDK 21
 * Open command prompt on your machine 
-* Check your Java version using below command
+* Check your Java/JDK version using the below command.It should tell version 21
 ```
    java --version
    ```
-* Check your maven version using below command,it will tell you java version for maven
+* Check your maven version using below command,it will tell you java version maven is pointing
 ```
    mvn --version
    ```
-* If your java version is not 21 for maven set JAVA_HOME environment variable,if you want to set from command prompt temporarily use the below command
+* If maven java version is not 21,set the JAVA_HOME environment variable,if you want to set it from command prompt temporarily use the below command
 ```
    set JAVA_HOME="<Path of JDK21>"
    ```
-* You can refer the link https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html for setting JAVA_HOME
-* Once JAVA_HOME is set run again mvn --version command to check if Java 21 has been updated for maven.
+* You can refer to the link https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html for setting JAVA_HOME environment variable
+* Once JAVA_HOME again check and confirm maven is pointing to JDK 21 using above commands.
 * If everything is working fine till here,now we can move forward for project setup.
 
-**Note:The above steps,I have tried on Windows Machine,similar steps will work for other OS also.**
+**Note:All the mentioned above steps,I have tried on Windows Machine,similar steps will work for other OS(Linux,Mac) also,which we can search from internet.**
 
 ## Download/Checkout the project 
 * Open the url https://github.com/vivekdubeydeveloper/movie-rental in web browser
 * Click on the code button
-* If you are using GIT client, open git bash from the path where you want to check out the project,run the below command
+* If you are using GIT client,copy https url.
+* Open git bash from the folder where you want to check out the project and run the below clone command from GIT bash
 ```
    git clone https://github.com/vivekdubeydeveloper/movie-rental.git
    ```
 * It will download movie-rental project in your folder
-* If you are not using git client, when you click on code button, you will see Download Zip menu, click on the Download Zip menu.
-* You will get movie-rental-maser.zip file, unzip it, you will get movie-rental-maser folder
+* If you are not using git client, when you click on the Code button, you will see the Download Zip menu, click on menu.
+* It will download movie-rental-maser.zip file,copy it in appropriate directory.Unzip it, you will get the project in movie-rental-maser folder
 
 
 ## Steps To Build and Run Code From IntelliJ
 * Open the project in Intellij.
-* Click in Intellij File->Project Structure menu,select project SDK 21,module SDK 21 and SDK 21
+* Click in Intellij File->Project Structure menu,select SDK 21 in project,module as well as SDK
 * Apply the setting.
-* Open terminal in intellij,run the below command it will clean,build and run the test cases(make sure JAVA_HOME is pointing to JDK 21).
+* Open terminal in the intellij,run the below command it will clean,build and run the test cases(make sure JAVA_HOME is pointing to JDK 21).
    ```
    mvn clean install
    ```
-* Jacoco plugin is configured in pom so it will generate code coverage html file on the mentioned path <projectfolder>/target/site/jacoco/index.html.Go inside the folder and open the file in any web browser(Chrome,Firefox,IE) to see the test coverage report.
+* Jacoco plugin is configured in the pom file so it will generate code coverage html file on the mentioned path <projectfolder>/target/site/jacoco/index.html.Go inside the folder and open the file in any web browser(Chrome,Firefox,IE) to see the test coverage report.
 * For running test cases only use the below command
    ```
    mvn test
@@ -85,18 +85,18 @@ To build and run the application we need following tools
    ```
    mvn verify
    ```
-* Once build is successful,from the maven panel you can run Sync all the project to sync source code with downloaded libs.You can run Main class from Intellij.
+* Once build is successful,from the maven panel you can run Sync all the project to sync source code with maven downloaded libs.To check the code,you can run the Main class from Intellij.
 
 ## Steps To Build and Run Code without IntelliJ
 
-* Open command prompt and cd to unzip project folder(movie-rental-master).
-* You need to verify if JDK,JAVA_HOME and maven is as per above section **Before Build And Run**.
-   
+* Open command prompt 
+* Run cd(change directory) command to go inside unzip project folder(movie-rental-master) path.
+* You need to verify if JDK,JAVA_HOME and Maven It should be as per above section **Before Build And Run**.
 * Run the below command from command prompt,It will clean,build and run the test cases
    ```
    mvn clean install
    ```
-* For run the test cases only use the below command
+* For running the test cases only use the below command
    ```
    mvn test
    ```
@@ -104,24 +104,25 @@ To build and run the application we need following tools
    ```
    mvn verify
    ```  
-* For running the code,run the below commands from command prompt( You need to go inside the target folder,jar file should be there if you have run the above commands)
+* For running the code,run the below commands from command prompt(You should go inside the target folder using cd command,jar file should be there if you have run the above maven commands)
    ```
    cd <path to target folder>
    java -cp movie-rental-1.0-SNAPSHOT.jar com.etraveli.movierental.Main
    ```    
   
-* We have configured maven-shade-plugin in pom so it will generate the fat jar file with all the dependencies so we can run the jar file using below command
+* We have configured maven-shade-plugin in the pom file so it will generate the fat jar file with all the dependencies so we can run the jar file directly using below command
  ```
    cd <path to target folder>
    java -jar movie-rental-1.0-SNAPSHOT.jar
    ```  
-* We can always change the input in main method,after that we can run mvn clean install to build the code. We can use above commands to run the code  
+* We can always change the input in main method,after that we can run **mvn clean install** to build the code. We can use above java -jar command to run the code  
 
 ## Navigate The Code
-* We can navigate the code in Intellij after build from Main class main method.
-* The Flow diagram in description section and below sequence diagram are helpful in navigation and understanding of the code
+* We can navigate the code in Intellij after the maven build.We can open Main class and go inside the main method in Intellij.
+* By using Ctr+click we can navigate to the flow in different classes.
+* The Flow diagram in description section and below sequence diagram are helpful in for code navigation and understanding
   <img src="movie-rental-sequence-diagram.png" alt="movie-rental-sequence-diagram">
-* If you want to understand the class structure we can generate class diagram from IntelliJ, right-click on the package com.etraveli.movierental,in the diagram menu click on the show diagram submenu. It will show class digram, we can select fields,method etc. 
+* If we want to understand the class structure,we can generate the class diagram from IntelliJ, right-click on the package com.etraveli.movierental,you can see the diagram menu then click on the show diagram submenu. You can see the class digram,then we can select the fields,methods etc. 
 
 ## What I Refactored And Why
 In this section I have explained what change I have made and why? Why section is describing the current benefits(applicable for this codebase) and future benefits as the codebase scales.
